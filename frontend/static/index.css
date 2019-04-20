@@ -1,0 +1,43 @@
+#parent {
+    display: flex;
+    flex-direction: row;
+}
+#images-container {
+    margin: 10px;
+    background-color: #e9ecef;
+    min-height: 480px;
+}
+#editor-container {
+    margin: 10px;
+    background-color: #e9ecef;
+    min-width: 640px;
+}
+.image-item{
+    display: flex;
+    padding: 20px;
+}
+.image-icon{
+    height: 80px;
+}
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 10px 0 0;
+}
+.image-icon:hover{
+    opacity: 0.5;
+}
+#editor-canvas{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+}
+#background-image{
+    position: absolute;
+    z-index: 2;
+}
+#toolbar{
+    display: flex;
+}

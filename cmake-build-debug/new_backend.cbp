@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="new_backend"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\Cellar\;CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\;CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\;CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\share\;CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\share\OpenCV\;CMake Files\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\usr\local\share\eigen3\;CMake Files\..\..\..\..\..\usr\local\share\eigen3\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/zcy/cs543/proj/new_backend/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/zcy/cs543/proj/new_backend/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/zcy/cs543/proj/new_backend/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="project_cml">
+				<Option output="/Users/zcy/cs543/proj/new_backend/cmake-build-debug/project_cml" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zcy/cs543/proj/new_backend/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/Cellar/opencv@2/2.4.13.7_2/include/opencv"/>
+					<Add directory="/usr/local/Cellar/opencv@2/2.4.13.7_2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 project_cml"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="project_cml/fast">
+				<Option output="/Users/zcy/cs543/proj/new_backend/cmake-build-debug/project_cml" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zcy/cs543/proj/new_backend/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/Cellar/opencv@2/2.4.13.7_2/include/opencv"/>
+					<Add directory="/usr/local/Cellar/opencv@2/2.4.13.7_2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 project_cml/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/zcy/cs543/proj/new_backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/ConjGrad.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/ConjGrad.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/DataCost.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/DataCost.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/DigitalMontage.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/DigitalMontage.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/GCoptimization.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/GCoptimization.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/Graph.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/Graph.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/LinkedBlockList.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/LinkedBlockList.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/MaxFlow.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/Parser.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/Util.cpp">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/src/Util.h">
+			<Option target="project_cml"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/Cellar/opencv@2/2.4.13.7_2/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/Cellar/opencv@2/2.4.13.7_2/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/Cellar/opencv@2/2.4.13.7_2/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/Cellar/opencv@2/2.4.13.7_2/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\Cellar\opencv@2\2.4.13.7_2\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/share/eigen3/cmake/Eigen3Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\eigen3\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/share/eigen3/cmake/Eigen3ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\eigen3\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/zcy/cs543/proj/new_backend/../../../../../usr/local/share/eigen3/cmake/Eigen3Targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\eigen3\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

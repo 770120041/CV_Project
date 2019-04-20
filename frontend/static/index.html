@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Photo Montage</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1> Interactive Photo Montage </h1>
+    <div id="toolbar">
+        <div>
+            <button type="button" class="btn btn-primary" onclick="uploadImages()">Upload Images</button>
+            <button type="button" class="btn btn-primary" onclick="cleanCanvas()">Clean Canvas</button>
+            <button type="button" class="btn btn-primary" onclick="sumbitRequest()">Generate Result</button>
+        </div>
+        <div style="padding: 0 20px; width:400px">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="function-selector">Function</label>
+                </div>
+                <select class="custom-select" id="function-selector">
+                    <option selected value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="parent">
+        <div id="images-container" class="border">
+        </div>
+        <div id="editor-container" class="border">
+            <div id="editor-box">
+                <img id="background-image" />
+                <canvas id="editor-canvas" height="480" width="640">
+
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <img style="display: none" id="hidden-image"/>
+    <input id="upload-input" style="display: none" type="file" multiple accept="image/*">
+    <script src="index.js"></script>
+</body>
+</html>
