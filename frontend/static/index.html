@@ -13,6 +13,8 @@
             <button type="button" class="btn btn-primary" onclick="uploadImages()">Upload Images</button>
             <button type="button" class="btn btn-primary" onclick="cleanCanvas()">Clean Canvas</button>
             <button type="button" class="btn btn-primary" onclick="sumbitRequest()">Generate Result</button>
+            <button type="button" class="btn btn-primary" onclick="changeBrushSize(2)">Brush +</button>
+            <button type="button" class="btn btn-primary" onclick="changeBrushSize(-2)">Brush -</button>
         </div>
         <div style="padding: 0 20px; width:400px">
             <div class="input-group mb-3">
@@ -20,12 +22,21 @@
                     <label class="input-group-text" for="function-selector">Function</label>
                 </div>
                 <select class="custom-select" id="function-selector">
-                    <option selected value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="0">USER_SPECIFY</option>
+                    <option selected value="1">MAX_LUMIN</option>
+                    <option value="2">MIN_LUMIN</option>
+                    <option value="3">ERASE</option>
+                    <option value="4">MAX_LIKEHOOD</option>
+                    <option value="5">MIN_LIKEHOOD</option>
+                    <option value="6">CONTRAST</option>
+                    <option value="7">MAX_DIFF</option>
+                    <option value="8">USER_SPECIFY_P</option>
                 </select>
             </div>
         </div>
+    </div>
+    <div class="alert alert-success" role="alert" id="alert-bar">
+        Welcome!
     </div>
     <div id="parent">
         <div id="images-container" class="border">
@@ -41,6 +52,8 @@
     </div>
     <img style="display: none" id="hidden-image"/>
     <input id="upload-input" style="display: none" type="file" multiple accept="image/*">
+
     <script src="index.js"></script>
+
 </body>
 </html>

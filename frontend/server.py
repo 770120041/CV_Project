@@ -15,7 +15,7 @@ def index():
 
 @app.route('/result.png')
 def result():
-    return send_from_directory('.', 'compositeimage.png')
+    return send_from_directory('.', 'compositeimage.png', cache_timeout=-1)
 
 def write_image(name, data):
     head, content = data.split(',')
@@ -45,4 +45,6 @@ def submit():
     print(bashCommand)
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
+    print(output)
+    print(error)
     return jsonify({"result": "ok"})

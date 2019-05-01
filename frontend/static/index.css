@@ -6,6 +6,7 @@
     margin: 10px;
     background-color: #e9ecef;
     min-height: 480px;
+    min-width: 240px;
 }
 #editor-container {
     margin: 10px;
@@ -40,4 +41,7 @@
 }
 #toolbar{
     display: flex;
+}
+body {
+    padding: 20px;
 }

@@ -3,17 +3,19 @@ const imageContainer = document.getElementById('images-container');
 const editorCanvas = document.getElementById('editor-canvas');
 const backgroundImage = document.getElementById('background-image');
 const hiddenImage = document.getElementById('hidden-image');
+const alertBar = document.getElementById('alert-bar');
 const editorCanvasCtx = editorCanvas.getContext('2d');
 const images = [];
 const tagImages = [];
 let selectedId = 0;
-let lineSize = 10;
+let lineSize = 20;
 let drawFlag = false;
 
 uploadInput.addEventListener('change', async function(e){
     if(e.target.files.length === 0){
         return;
     }
+    const oldLen = images.length;
     for(const file of e.target.files){
         images.push(await new Promise((res, rej) => {
             const reader = new FileReader();
@@ -26,7 +28,7 @@ uploadInput.addEventListener('change', async function(e){
     applyImageTo(hiddenImage, images[0]);
     const h = hiddenImage.height;
     const w = hiddenImage.width;
-    for(let i = 1; i < images.length; i++){
+    for(let i = oldLen; i < images.length; i++){
         applyImageTo(hiddenImage, images[i]);
         const nh = hiddenImage.height;
         const nw = hiddenImage.width;
@@ -39,7 +41,8 @@ uploadInput.addEventListener('change', async function(e){
     cleanCanvas();
     console.log(images.length);
     const emptyImage = editorCanvas.toDataURL();
-    for(let i = 0; i < images.length; i++) tagImages[i] = emptyImage;
+    console.log(emptyImage);
+    for(let i = oldLen; i < images.length; i++) tagImages[i] = emptyImage;
     syncImages();
 }, false);
 
@@ -90,8 +93,10 @@ function removeImage(id){
     selectImage(-1);
     for(let i = id; i < images.length - 1; i++){
         images[i] = images[i + 1];
+        tagImages[i] = tagImages[i + 1];
     }
     images.pop();
+    tagImages.pop()
     syncImages();
 }
 function cleanCanvas(){
@@ -110,7 +115,7 @@ editorCanvas.addEventListener('mousedown', function (e) {
     drawFlag = true;
     editorCanvasCtx.lineJoin = 'round';
     editorCanvasCtx.lineCap = 'round';
-    editorCanvasCtx.lineWidth = 20;
+    editorCanvasCtx.lineWidth = lineSize;
     editorCanvasCtx.strokeStyle = "red";
     editorCanvasCtx.beginPath();
     editorCanvasCtx.moveTo(e.offsetX, e.offsetY);
@@ -122,8 +127,14 @@ editorCanvas.addEventListener('mousemove', function (e) {
     }
 });
 
+function changeBrushSize(delta){
+    lineSize += delta;
+    if(lineSize <= 1) lineSize = 1;
+}
+
 function sumbitRequest(){
-    const func = document.querySelector('option[selected]').value;
+    const func = document.querySelector('#function-selector').value;
+    alertBar.innerHTML = "Processing";
     fetch('/submit', {
         method: "POST",
         headers: {
@@ -135,7 +146,8 @@ function sumbitRequest(){
             tagImages: tagImages,
         })
     }).then((x) => x.json()).then((x) => {
-        console.log("ok");
+        alertBar.innerHTML = "Finish";
+        selectedId=-1
         const image = new Image();
         image.onload = function() {
             editorCanvasCtx.drawImage(image, 0, 0);
