@@ -44,7 +44,6 @@ public:
 private:
     int currentMode;
 
-    void Solve(const vector<Mat> &Images, const Mat &Label, int, double);
 
     void calGradientDomainFusion(const vector<Mat> &Images, const Mat &ResultLabel);
 

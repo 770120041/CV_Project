@@ -16,16 +16,9 @@ void DigitalMontage::Run(const std::vector<cv::Mat> &Images, const cv::Mat &Labe
     sprintf(logbuffer, "mode is %d", mode);
     debug_print(logbuffer);
 
-    Solve(Images, Label, mode, user_param);
-}
-
-
-void DigitalMontage::Solve(const std::vector<cv::Mat> &Images, const cv::Mat &Label, int mode, double user_params) {
-
-    int width = Label.cols;
-    int height = Label.rows;
-    const int image_size = Images.size();
-    int n_label = image_size;
+    // Solve(Images, Label, mode, user_param);
+    int image_size = Images.size();
+    int label_number = image_size;
     ExtraData extra_data;
 
     extra_data.Images.resize(image_size);
@@ -34,11 +27,14 @@ void DigitalMontage::Solve(const std::vector<cv::Mat> &Images, const cv::Mat &La
     }
     extra_data.Label = Label;
     extra_data.cur_mode = mode;
-    extra_data.user_param = user_params;
+    extra_data.user_param = user_param;
 
-
+    // all shall be of same shape
+    int width = Label.cols;
+    int height = Label.rows;
+    
     try {
-        SaveResultLabel(Label, n_label);
+        SaveResultLabel(Label, label_number);
 
         GCoptimizationGridGraph *graph_cutter = new GCoptimizationGridGraph(width, height, image_size);
         ExtraDataContrast extra_contrast;
@@ -46,6 +42,7 @@ void DigitalMontage::Solve(const std::vector<cv::Mat> &Images, const cv::Mat &La
 
         switch (mode) {
             case USER_SPECIFY:
+                debug_print("using user_specify penalty");
                 graph_cutter->setDataCost(&data_cost_user_specify, &extra_data);
                 break;
             case MAX_LUMIN:
@@ -90,7 +87,6 @@ void DigitalMontage::Solve(const std::vector<cv::Mat> &Images, const cv::Mat &La
                 break;
         }
 
-
         graph_cutter->setSmoothCost(&smoothFn, &extra_data);
         graph_cutter->swap(10);
         Mat result_label(height, width, CV_8UC1);
@@ -102,8 +98,8 @@ void DigitalMontage::Solve(const std::vector<cv::Mat> &Images, const cv::Mat &La
             }
         }
         delete graph_cutter;
-
-        SaveResultLabel(result_label, n_label);
+        //Save result label to file for visulization
+        SaveResultLabel(result_label, label_number);
         // if current mode need gradient domain fusion to make more seamless
         if (currentMode == USER_SPECIFY_P || currentMode == MAX_DIFF || currentMode == CONTRAST) {
             calGradientDomainFusion(Images, result_label);
@@ -115,6 +111,7 @@ void DigitalMontage::Solve(const std::vector<cv::Mat> &Images, const cv::Mat &La
         e.Report();
     }
 }
+
 
 
 void DigitalMontage::calGradientDomainFusion(const vector<Mat> &Images, const Mat &ResultLabel) {
@@ -182,12 +179,11 @@ void DigitalMontage::SolveForOneThread(int channel_idx, int constraint, const cv
     ATA = A.transpose() * A;
     Eigen::VectorXd ATb = A.transpose() * b;
 
-    printf("\nSolving Possion Equation...\n");
 
     Eigen::ConjugateGradient<Eigen::SparseMatrix<double> > newSolver(ATA);
     Eigen::VectorXd result = newSolver.solve(ATb);
 
-    printf("Solved!\n");
+    debug_print("Possion equation solveds!\n");
 
     for (int y = 0; y < gradientAtX.rows; y++) {
         for (int x = 0; x < gradientAtX.cols; x++) {

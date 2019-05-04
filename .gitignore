@@ -1,0 +1,10 @@
+.vscode/
+CmakeFiles/
+img/
+old/
+project_cml
+result/
+resultlabels.png
+*.sh
+cmake_install.cmake
+CMakeCache.txt
