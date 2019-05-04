@@ -34,6 +34,19 @@ int ParseMode(char *str)
         result = result*10 + str[i] - '0'; 
     return result; 
 } 
+// void test_warp(int argc, char* argv[]) {
+// 	CylinderWarper warp(1);
+// 	REPL(i, 2, argc) {
+// 		Mat32f mat = read_img(argv[i]);
+// 		warp.warp(mat);
+// 		write_rgb(("warp" + to_string(i) + ".jpg").c_str(), mat);
+// 	}
+// }
+
+
+// void work(int argc, char* argv[]) {
+// /*
+
 
 // Reading mat and resize according to ratio
 Mat ReadAndResize(string path,float ratio=1){   
@@ -65,6 +78,21 @@ void debug_print(string s){
 }
 
 
+//  *      imgs[i-1] = read_img(argv[i]);
+//  *  }
+//  */
+// 	vector<string> imgs;
+// 	REPL(i, 1, argc) imgs.emplace_back(argv[i]);
+// 	Mat32f res;
+// 	if (CYLINDER) {
+// 		CylinderStitcher p(move(imgs));
+// 		res = p.build();
+// 	} else {
+// 		Stitcher p(move(imgs));
+// 		res = p.build();
+// 	}
+
+// 	// if (CROP) {
 
 //    Function fo parse Image from argv and argv, also return the result Lable Mat 
 Mat parseImageAndLabel(int argc, char* argv[],vector<Mat> &Inputs, bool NeedLabel){
@@ -110,6 +138,10 @@ Mat parseImageAndLabel(int argc, char* argv[],vector<Mat> &Inputs, bool NeedLabe
             }
         }
 
+        /* Round size up to a multiple of wordsize.  The following expression
+            only works for WORDSIZE that is a power of 2, by masking last bits of
+            incremented size to zero.
+         */
         // store all labels to one lable and pass it to Digital Montage functions
         resultLabel = Mat(Inputs[0].rows, Inputs[0].cols, CV_8SC1);
         resultLabel.setTo(LABEL_UNDEFINED);
@@ -137,6 +169,17 @@ Mat parseImageAndLabel(int argc, char* argv[],vector<Mat> &Inputs, bool NeedLabe
         resultLabel = Mat(Inputs[0].rows, Inputs[0].cols, CV_8SC1);
         resultLabel.setTo(LABEL_UNDEFINED);
     }
+// 		print_debug("Crop from %dx%d to %dx%d\n", oldw, oldh, res.width(), res.height());
+// 	}
+// 	{
+// 		GuardedTimer tm("Writing image");
+// 		write_rgb(IMGFILE(out), res);
+// 	}
+// }
+
+// void init_config() {
+// #define CFG(x) \
+// 	x = Config.get(#x)
 
     return resultLabel;
 
@@ -158,7 +201,20 @@ double euc_dist(const Vec3b & a, const Vec3b & b)
     return sqrt( double_diff[0] * double_diff[0] + double_diff[1] * double_diff[1] + double_diff[2] * double_diff[2]);
 }
 
-
+/**
+     * Allocates (using this pool) a generic type T.
+     *
+     * Params:
+     *     count = number of instances to allocate.
+     * Returns: pointer (of type T*) to memory buffer
+     */
+    /**
+     * Allocates (using this pool) a generic type T.
+     *
+     * Params:
+     *     count = number of instances to allocate.
+     * Returns: pointer (of type T*) to memory buffer
+     */
  //Define interaction penalty Ci over all pairs of neighboring pixels A and B
  //Seam objective to be 0 if L(A) = L(B). Otherwise, we implement following calculation:
 double smoothFn(int point_a, int point_b, int LabelA, int LabelB, void * data)
@@ -250,6 +306,23 @@ void calculate_gradient_at_xy(const Mat & image,int x,int y,double grad[]){
             ld=0;
             lu=0;
         }
+
+
+
+// if (mode == 0) {
+// 		auto extrema = ex.get_raw_extrema();
+// 		PP(extrema.size());
+// 		for (auto &i : extrema)
+// 			pld.cross(i, LABEL_LEN / 2);
+// 	} else if (mode == 1) {
+// 		auto extrema = ex.get_extrema();
+// 		cout << extrema.size() << endl;
+// 		for (auto &i : extrema) {
+// 			Coor c{(int)(i.real_coor.x * mat.width()), (int)(i.real_coor.y * mat.height())};
+// 			pld.cross(c, LABEL_LEN / 2);
+// 		}
+// 	}
+
         else if(x==image.cols-1){
             r=0;
             rd=0;
@@ -295,6 +368,7 @@ void calculate_gradient_at_xy(const Mat & image,int x,int y,double grad[]){
 
 void cal_color_gradient( const cv::Mat & Image, int x, int y, cv::Vec3f & grad_x, cv::Vec3f & grad_y )
 {
+    
     
     Vec3i color1 = Image.at<Vec3b>(y, x);
     Vec3i color2 = Image.at<Vec3b>(y, x + 1);

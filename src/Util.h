@@ -42,4 +42,34 @@ struct ExtraDataContrast
     vector<Mat> GaussianImages;
 };
 
+
+enum flann_log_level_t
+{
+    FLANN_LOG_NONE = 0,
+    FLANN_LOG_FATAL = 1,
+    FLANN_LOG_ERROR = 2,
+    FLANN_LOG_WARN = 3,
+    FLANN_LOG_INFO = 4,
+    FLANN_LOG_DEBUG = 5
+};
+
+enum flann_distance_t
+{
+    FLANN_DIST_EUCLIDEAN 			= 1,
+    FLANN_DIST_L2 					= 1,
+    FLANN_DIST_MANHATTAN 			= 2,
+    FLANN_DIST_L1 					= 2,
+    FLANN_DIST_MINKOWSKI 			= 3,
+    FLANN_DIST_MAX   				= 4,
+    FLANN_DIST_HIST_INTERSECT  		= 5,
+    FLANN_DIST_HELLINGER 			= 6,
+    FLANN_DIST_CHI_SQUARE		 	= 7,
+    FLANN_DIST_KULLBACK_LEIBLER  	= 8,
+    FLANN_DIST_HAMMING         		= 9,
+    FLANN_DIST_HAMMING_LUT			= 10,
+    FLANN_DIST_HAMMING_POPCNT   	= 11,
+    FLANN_DIST_L2_SIMPLE	   		= 12,
+};
+
+
 #endif

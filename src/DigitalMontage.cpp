@@ -16,6 +16,24 @@ void DigitalMontage::Run(const std::vector<cv::Mat> &Images, const cv::Mat &Labe
     sprintf(logbuffer, "mode is %d", mode);
     debug_print(logbuffer);
 
+// void test_orientation(const char* fname) {
+// 	auto mat = read_img(fname);
+// 	ScaleSpace ss(mat, NUM_OCTAVE, NUM_SCALE);
+// 	DOGSpace dog(ss);
+// 	ExtremaDetector ex(dog);
+// 	auto extrema = ex.get_extrema();
+// 	OrientationAssign ort(dog, ss, extrema);
+// 	auto oriented_keypoint = ort.work();
+
+// 	PlaneDrawer pld(mat);
+// 	pld.set_rand_color();
+
+// 	cout << "FeaturePoint size: " << oriented_keypoint.size() << endl;
+// 	for (auto &i : oriented_keypoint)
+// 		pld.arrow(Coor(i.real_coor.x * mat.width(), i.real_coor.y * mat.height()), i.dir, LABEL_LEN);
+// 	write_rgb(IMGFILE(orientation), mat);
+// }
+
     // Solve(Images, Label, mode, user_param);
     int image_size = Images.size();
     int label_number = image_size;
@@ -34,6 +52,13 @@ void DigitalMontage::Run(const std::vector<cv::Mat> &Images, const cv::Mat &Labe
     int height = Label.rows;
     
     try {
+        /**
+ * Class that implements a simple rectangular matrix stored in a memory buffer and
+ * provides convenient matrix-like access using the [] operators.
+ *
+ * This class has the same memory structure as the un-templated class flann::Matrix_ and
+ * it's directly convertible from it.
+ */
         SaveResultLabel(Label, label_number);
 
         GCoptimizationGridGraph *graph_cutter = new GCoptimizationGridGraph(width, height, image_size);
@@ -42,6 +67,18 @@ void DigitalMontage::Run(const std::vector<cv::Mat> &Images, const cv::Mat &Labe
 
         switch (mode) {
             case USER_SPECIFY:
+            // Mat32f pic2 = read_img(f2);
+// 	imagelist.push_back(pic1);
+// 	imagelist.push_back(pic2);
+
+// 	unique_ptr<FeatureDetector> detector;
+// 	detector.reset(new SIFTDetector);
+// 	vector<Descriptor> feat1 = detector->detect_feature(pic1),
+// 										 feat2 = detector->detect_feature(pic2);
+// 	print_debug("Feature: %lu, %lu\n", feat1.size(), feat2.size());
+
+// 	Mat32f concatenated = hconcat(imagelist);
+// 	PlaneDrawer pld(concatenated);
                 debug_print("using user_specify penalty");
                 graph_cutter->setDataCost(&data_cost_user_specify, &extra_data);
                 break;
@@ -97,6 +134,19 @@ void DigitalMontage::Run(const std::vector<cv::Mat> &Images, const cv::Mat &Labe
                 result_label.at<uchar>(y, x) = graph_cutter->whatLabel(idx);
             }
         }
+        // t.get_transform(&info);
+// 	print_debug("Inlier size: %lu, conf=%lf\n", info.match.size(), info.confidence);
+// 	if (info.match.size() == 0)
+// 		return;
+
+// 	for (auto &x : info.match) {
+// 		pld.set_rand_color();
+// 		Vec2D coor1 = x.first,
+// 					coor2 = x.second;
+// 		Coor icoor1 = Coor(coor1.x + pic1.width()/2, coor1.y + pic1.height()/2);
+// 		Coor icoor2 = Coor(coor2.x + pic2.width()/2, coor2.y + pic2.height()/2);
+// 		pld.circle(icoor1, LABEL_LEN);
+// 		pld.circle(icoor2 + Coor(pic1.wi
         delete graph_cutter;
         //Save result label to file for visulization
         SaveResultLabel(result_label, label_number);
@@ -139,7 +189,16 @@ void DigitalMontage::calGradientDomainFusion(const vector<Mat> &Images, const Ma
     pthread_create(&pid1, NULL, thread_function, &para1);
     pthread_create(&pid2, NULL, thread_function, &para2);
     pthread_create(&pid3, NULL, thread_function, &para3);
-
+/**
+ * an entire pool of storage is freed at once.
+ * This method has two advantages over just using malloc() and free().  First,
+ * it is far more efficient for allocating small objects, as there is
+ * no overhead for remembering all the information needed to free each
+ * object or consolidating fragmented memory.  Second, the decision about
+ * how long to keep an object is made at the time of allocation, and there
+ * is no need to track down all the objects to free them.
+ *
+ */
     pthread_join(pid1, NULL);
     pthread_join(pid2, NULL);
     pthread_join(pid3, NULL);
@@ -152,6 +211,23 @@ void DigitalMontage::SolveForOneThread(int channel_idx, int constraint, const cv
     int UnknowTermNum = 2 * gradientAtX.cols * gradientAtX.rows + 1;
     vector<Eigen::Triplet<double> > Non_tero_term;
     Eigen::VectorXd b(UnknowTermNum);
+
+    // Mat32f pic1 = read_img(f1);
+// 	Mat32f pic2 = read_img(f2);
+// 	imagelist.push_back(pic1);
+// 	imagelist.push_back(pic2);
+
+// 	unique_ptr<FeatureDetector> detector;
+// 	detector.reset(new SIFTDetector);
+// 	vector<Descriptor> feat1 = detector->detect_feature(pic1),
+// 										 feat2 = detector->detect_feature(pic2);
+// 	vector<Vec2D> kp1; for (auto& d : feat1) kp1.emplace_back(d.coor);
+// 	vector<Vec2D> kp2; for (auto& d : feat2) kp2.emplace_back(d.coor);
+// 	print_debug("Feature: %lu, %lu\n", feat1.size(), feat2.size());
+
+// 	Mat32f concatenated = hconcat(imagelist);
+// 	PlaneDrawer pld(concatenated);
+// 	FeatureMatcher match(feat1, feat2);
     for (int y = 0; y < gradientAtX.rows - 1; y++) {
         for (int x = 0; x < gradientAtX.cols - 1; x++) {
             int index_of_knows = y * gradientAtX.cols + x;
@@ -166,7 +242,10 @@ void DigitalMontage::SolveForOneThread(int channel_idx, int constraint, const cv
         }
     }
 
-
+    /* We maintain memory alignment to word boundaries by requiring that all
+        allocations be in multiples of the machine wordsize.  */
+    /* Size of machine word in bytes.  Must be power of 2. */
+    /* Minimum number of bytes requested at a time from	the system.  Must be multiple of WORDSIZE. */
     int eq_idx = gradientAtX.cols * gradientAtX.rows * 2;
     Non_tero_term.push_back(Eigen::Triplet<double>(eq_idx, 0, 1));
     b(eq_idx) = constraint;
